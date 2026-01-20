@@ -28,7 +28,7 @@ set $menu tofi-drun | xargs swaymsg exec --
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-exec swaybg -m fit -i /home/treeman/Pictures/apod/background.png
+exec swaybg -m fill -i /home/treeman/Pictures/apod/background.png
 #bindsym Print exec flameshot gui
 #exec systemctl --user restart skeybindd.service
 

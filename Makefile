@@ -1,3 +1,6 @@
 DIRS := bash/ dots/
 all:
-	stow $(DIRS)
+	stow --dotfiles $(DIRS)
+
+clean: 
+	stow -D $(DIRS)
