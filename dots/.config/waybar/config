@@ -1,0 +1,70 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 30,
+    "spacing": 0,
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "mpd"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "temperature",
+        "battery",
+        "tray"
+    ],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "format": "{name}"
+    },
+    "sway/mode": {
+        "format": "  {}"
+    },
+    "clock": {
+        "format": "<span color='#252525'>[ </span>{:%A %I:%M%p %b %d}<span color='#252525'> ]</span>",
+        "interval": 5,
+        "tooltip-format": "<span>{calendar}</span>",
+        "calendar": {
+            "mode": "month",
+            "format": {
+                "months": "<span color='#ff6699'><b>{}</b></span>",
+                "days": "<span color='#cdd6f4'><b>{}</b></span>",
+                "weekdays": "<span color='#7CD37C'><b>{}</b></span>",
+                "today": "<span color='#ffcc66'><b>{}</b></span>"
+            }
+        }
+    },
+    "network": {
+        "format-ethernet": "<span color='#148d00'>{ipaddr}</span><span color='#252525'> / </span>",
+        "format-wifi": "{essid} <span color='#148d00'>{ipaddr}</span><span color='#252525'> /</span>",
+        "format-disconnected": "<span color='#820000'>Disconnected</span><span color='#252525'> / </span> ",
+        "tooltip": false,
+        "interval": 5
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp2_input",
+        "format": "{temperatureC}°C",
+        "tooltip": false
+    },
+    "mpd": {
+        "format": "{artist} - {title}",
+        "format-disconnected": "",
+        "format-stopped": ""
+    },
+    "battery": {
+        "format": "<span color='#252525'> / </span><span color='#afa193'><b>bat:</b></span> {capacity}% |",
+        "format-charging": "<span color='#252525'> / </span><span color='#afa193'><b>ac:</b></span> {capacity}% |",
+        "tooltip": false,
+        "interval": 20
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 5,
+        "tooltip": false
+    }
+}

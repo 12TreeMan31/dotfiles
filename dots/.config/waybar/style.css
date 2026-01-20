@@ -1,0 +1,63 @@
+@define-color accent #afa193;
+@define-color fg #f6f1ea;
+@define-color bg #101010;
+@define-color bg-alt #252525;
+
+* {
+    font-family: "Fira Code";
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: @bg;
+    border-bottom: 1px solid @bg-alt;
+}
+
+#mode {
+    font-weight: bold;
+    color: #883500;
+}
+
+#language,
+#pulseaudio,
+#battery,
+#backlight,
+#temperature,
+#custom-clock {
+    color: @fg;
+}
+
+#temperature.critical {
+    color: #820000;
+}
+
+#workspaces {
+    border-bottom: 1px solid @bg-alt;
+}
+
+#workspaces button {
+    padding: 5px 5px 5px 5px;
+    color: @fg;
+    background-color: @bg;
+    font-weight: bold;
+    border: none;
+}
+
+#workspaces button:hover {
+    background: none;
+    border: none;
+    border-color: transparent;
+    transition: none;
+}
+
+#workspaces button.focused {
+    border: none;
+    color: #883500;
+}
+
+#tray {
+    font-family: "Fira Code";
+    padding-right: 5px;
+    padding-left: 5px;
+}
