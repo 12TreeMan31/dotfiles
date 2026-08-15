@@ -1,4 +1,14 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+let 
+  inherit (lib) mkOption types;
+in {
+  options.desktop.modkey = mkOption {
+    type = types.str;
+    default = "Mod4";
+    description = "Sway mod key";
+  };
+
+  config = {
   # Needed for hm to work
   home.username = "treeman";
   home.homeDirectory = "/home/treeman";
@@ -38,7 +48,7 @@
     wrapperFeatures.gtk = true;
     systemd.enable = true;
     config = {
-      modifier = "Mod4";
+      modifier = config.desktop.modkey;
       terminal = "kitty --single-instance";
       menu = "tofi-drun --drun-launch=true";
       bars = [{ command = "waybar"; }];
@@ -177,4 +187,5 @@
   programs.home-manager.enable = true;
   # Let OpenGL work without needing NixGL. During inital setup will prompt user to run a command.
   targets.genericLinux.enable = true;
+  };
 }
