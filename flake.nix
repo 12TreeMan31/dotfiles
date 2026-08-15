@@ -13,7 +13,7 @@
       homeConfigurations.treeman = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = { inherit inputs; };
-      modules = [ ./home.nix ./email.nix ./music.nix ];
+      modules = [ ./desktop.nix ./email.nix ./music.nix ];
     };
   };
 }

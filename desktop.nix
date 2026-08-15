@@ -165,7 +165,6 @@
     # '';
     ".config/tofi".source = dotfiles/tofi;
     ".config/waybar".source = dotfiles/waybar;
-    ".config/ranger".source = dotfiles/ranger;
     ".config/mako".source = dotfiles/mako;
     ".config/xdg-desktop-portal-termfilechooser".source = dotfiles/xdg-desktop-portal-termfilechooser;
   };
