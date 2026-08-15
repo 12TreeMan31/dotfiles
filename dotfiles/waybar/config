@@ -1,0 +1,72 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 30,
+    "spacing": 0,
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "mpd"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "temperature",
+        "battery",
+        "tray"
+    ],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "format": "{name}"
+    },
+    "sway/mode": {
+        "format": "  [{}]"
+    },
+    "clock": {
+        "format": "[{:%A %I:%M%p %b %d}]",
+        "interval": 5,
+        "tooltip-format": "<span>{calendar}</span>",
+        "calendar": {
+            "mode": "month",
+            "format": {
+                "months": "<span color='#ff6699'><b>{}</b></span>",
+                "days": "<span color='#cdd6f4'><b>{}</b></span>",
+                "weekdays": "<span color='#7CD37C'><b>{}</b></span>",
+                "today": "<span color='#ffcc66'><b>{}</b></span>"
+            }
+        }
+    },
+    "network": {
+        "format-ethernet": "<span color='#148d00'>[{ipaddr}]</span>",
+        "format-wifi": "<span color='#148d00'>[{essid}{ipaddr}]</span>",
+        "format-disconnected": "<span color='#820000'>[Disconnected]</span>",
+        "tooltip": false,
+        "interval": 5
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp2_input",
+        "format": "<span color='#c000ce'>[{temperatureC}°C]</span>",
+        "tooltip": false
+    },
+    "mpd": {
+        "tooltip": false,
+        "format": "[{artist} - {title}]",
+        "format-paused": "",
+        "format-stopped": "",
+        "interval": 5
+    },
+    "battery": {
+        "format": "<span color='#4585ae'>[<b>bat:</b>{capacity}%]</span>",
+        "format-charging": "<span color='#252525'> </span><span color='#afa193'><b>ac:</b></span> {capacity}%]",
+        "tooltip": false,
+        "interval": 20
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 5,
+        "tooltip": false
+    }
+}

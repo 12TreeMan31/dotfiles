@@ -1,0 +1,44 @@
+# General
+default-timeout=1000
+width=350
+height=200
+padding=12
+border-size=2
+layer=overlay
+font=Fira Code Regular 10
+
+# Colors
+background-color=#10101080
+border-color=#252525FF
+
+# Volume OSD
+[app-name=volume]
+group-by=app-name
+format=<b>%s</b>\n%b
+
+[app-name=volume group-index=0]
+invisible=0
+
+# Brightness OSD
+[app-name=brightness]
+group-by=app-name
+format=<b>%s</b>\n%b
+
+[app-name=brightness group-index=0]
+invisible=0
+
+# Themeing
+[app-name=theme]
+group-by=app-name
+format=<b>%s</b>\n%b
+
+[app-name=theme group-index=0]
+invisible=0
+
+# Music
+[app-name=music]
+group-by=app-name
+format=<b>%s</b>\n%b
+
+[app-name=music group-index=0]
+invisible=0
