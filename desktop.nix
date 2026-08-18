@@ -36,6 +36,8 @@ in {
     ranger		# filepicker
     awww		# desktop background
     mupdf
+    hunspell
+    hunspellDicts.en_US
   ];
 
   gtk = {
@@ -59,8 +61,9 @@ in {
       keybindings = let
         mod = config.wayland.windowManager.sway.config.modifier;
       in lib.mkOptionDefault {
-        "${mod}+p" = "exec slurp | grim -g - - | tee ~/Pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
+        "${mod}+p" = "exec slurp | grim -g - - | tee ~/tmp/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
 	"${mod}+q" = "kill";
+        "${mod}+SHIFT+p" = "exec slurp | grim -g - - | tee ~/Pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
 	"${mod}+Shift+n" = "exec awww img $(sid-bg)";
 	"${mod}+Shift+e" = "exec swaynag -t warning -y overlay -m 'Do you want to exit sway?' -b 'Yes' 'swaymsg exit'";
 	"${mod}+Shift+q" = "exec kitty --single-instance iwctl";
