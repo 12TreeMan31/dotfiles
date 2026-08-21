@@ -5,9 +5,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }: let
+  outputs = { nixpkgs, home-manager, nixvim, ... }: let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
     in {
       homeConfigurations = {
@@ -17,6 +20,8 @@
 	  modules = [
 	    ./archwood.nix
 	    ./desktop.nix
+	    nixvim.homeManagerModules.nixvim
+            ./nixvim.nix
 	  ];
 	};
 
@@ -28,6 +33,8 @@
 	    ./desktop.nix
 	    ./email.nix
 	    ./music.nix
+	    nixvim.homeManagerModules.nixvim
+            ./nixvim.nix
 	  ];
 	};
 
@@ -39,6 +46,8 @@
 	    ./desktop.nix
 	    ./email.nix
 	    ./music.nix
+	    nixvim.homeManagerModules.nixvim
+            ./nixvim.nix
 	  ];
 	};
       };
