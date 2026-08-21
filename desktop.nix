@@ -2,12 +2,24 @@
 let 
   inherit (lib) mkOption types;
 in {
-  options.desktop.modkey = mkOption {
-    type = types.str;
-    default = "Mod4";
-    description = "Sway mod key";
-  };
+  options.desktop = {
+    modkey = mkOption {  
+      type = types.str;
+      default = "Mod4";
+      description = "Sway mod key";
+    };
 
+    focused = mkOption {
+      type = types.attrsOf types.str;
+      default = {
+	background = "#285577";
+        border = "#4c7899";
+  	childBorder = "#285577";
+  	indicator = "#2e9ef4";
+  	text = "#ffffff";
+      };
+    };
+  };
   config = {
   # Needed for hm to work
   home.username = "treeman";
@@ -56,6 +68,7 @@ in {
         hideEdgeBorders = "none";
 	titlebar = false;
       };
+      colors.focused = config.desktop.focused;
       keybindings = let
         mod = config.wayland.windowManager.sway.config.modifier;
       in lib.mkOptionDefault {

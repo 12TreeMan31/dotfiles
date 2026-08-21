@@ -15,8 +15,8 @@
 	  inherit pkgs;	
 	  
 	  modules = [
-	    ./desktop.nix
 	    ./archwood.nix
+	    ./desktop.nix
 	  ];
 	};
 
@@ -24,6 +24,7 @@
 	  inherit pkgs;	
 	  
 	  modules = [
+	    ./stickpad.nix
 	    ./desktop.nix
 	    ./email.nix
 	    ./music.nix
@@ -34,6 +35,7 @@
 	  inherit pkgs;	
 	  
 	  modules = [
+	    ./treepad.nix
 	    ./desktop.nix
 	    ./email.nix
 	    ./music.nix
