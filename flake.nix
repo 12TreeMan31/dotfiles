@@ -7,13 +7,38 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: let
+  outputs = { nixpkgs, home-manager, ... }: let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
     in {
-      homeConfigurations.treeman = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = { inherit inputs; };
-      modules = [ ./desktop.nix ./email.nix ./music.nix ];
+      homeConfigurations = {
+	archwood = home-manager.lib.homeManagerConfiguration {
+	  inherit pkgs;	
+	  
+	  modules = [
+	    ./desktop.nix
+	    ./archwood.nix
+	  ];
+	};
+
+        stickpad = home-manager.lib.homeManagerConfiguration {
+	  inherit pkgs;	
+	  
+	  modules = [
+	    ./desktop.nix
+	    ./email.nix
+	    ./music.nix
+	  ];
+	};
+
+	treepad =  home-manager.lib.homeManagerConfiguration {
+	  inherit pkgs;	
+	  
+	  modules = [
+	    ./desktop.nix
+	    ./email.nix
+	    ./music.nix
+	  ];
+	};
+      };
     };
-  };
 }

@@ -36,8 +36,6 @@ in {
     ranger		# filepicker
     awww		# desktop background
     mupdf
-    hunspell
-    hunspellDicts.en_US
   ];
 
   gtk = {
