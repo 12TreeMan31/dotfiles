@@ -12,12 +12,13 @@ in {
     focused = mkOption {
       type = types.attrsOf types.str;
       default = {
-	background = "#285577";
-        border = "#4c7899";
-  	childBorder = "#285577";
-  	indicator = "#2e9ef4";
-  	text = "#ffffff";
+	  background = "#285577";
+      border = "#4c7899";
+  	  childBorder = "#285577";
+  	  indicator = "#2e9ef4";
+  	  text = "#ffffff";
       };
+      description = "Sway theme colors";
     };
   };
   config = {
@@ -37,17 +38,17 @@ in {
   home.packages = with pkgs; [
     # Librewolf isnt in here bc the nix version doesn't work with extensions
     # you must also install sid-bg yourself
-    grim		# screenshot
-    slurp		# screenshot
+    grim		    # screenshot
+    slurp		    # screenshot
     wl-clipboard	# screenshot
-    imv			# image viewer
-    mako		# notifications
-    kitty		# term
-    tofi		# dmenu
-    waybar		# bar
-    ranger		# filepicker
-    awww		# desktop background
-    mupdf
+    imv			    # image viewer
+    mako		    # notifications
+    kitty		    # term
+    tofi		    # dmenu
+    waybar		    # bar
+    ranger		    # filepicker
+    awww		    # desktop background
+    mupdf           # pdf viewer
   ];
 
   gtk = {
@@ -59,25 +60,27 @@ in {
     enable = true;
     wrapperFeatures.gtk = true;
     systemd.enable = true;
+    extraConfig = "swaybg_command -";
     config = {
       modifier = config.desktop.modkey;
+      defaultWorkspace = "workspace number 1";
       terminal = "kitty --single-instance";
       menu = "tofi-drun --drun-launch=true";
       bars = [{ command = "waybar"; }];
       window = {
         hideEdgeBorders = "none";
-	titlebar = false;
+	    titlebar = false;
       };
       colors.focused = config.desktop.focused;
       keybindings = let
         mod = config.wayland.windowManager.sway.config.modifier;
       in lib.mkOptionDefault {
         "${mod}+p" = "exec slurp | grim -g - - | tee ~/tmp/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
-	"${mod}+q" = "kill";
+        "${mod}+q" = "kill";
         "${mod}+SHIFT+p" = "exec slurp | grim -g - - | tee ~/Pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
-	"${mod}+Shift+n" = "exec awww img $(sid-bg)";
-	"${mod}+Shift+e" = "exec swaynag -t warning -y overlay -m 'Do you want to exit sway?' -b 'Yes' 'swaymsg exit'";
-	"${mod}+Shift+q" = "exec kitty --single-instance iwctl";
+        "${mod}+Shift+n" = "exec awww img $(sid-bg)";
+        "${mod}+Shift+e" = "exec swaynag -t warning -y overlay -m 'Do you want to exit sway?' -b 'Yes' 'swaymsg exit'";
+        "${mod}+Shift+q" = "exec kitty --single-instance iwctl";
       };
       input = {
 	"*" = {
@@ -139,10 +142,6 @@ in {
       "ls" = "ls --color";
       "code" = "vscodium";
     };
-    bashrcExtra = "
-      export EDITOR=nvim
-      export TERM=xterm-256color
-    ";
   };
 
   programs.kitty = {
@@ -195,6 +194,11 @@ in {
 
   home.sessionVariables = {
     TERMCMD = "${pkgs.kitty}/bin/kitty";
+    # Fix font rendering for java programs
+    _JAVA_AWT_WM_NONREPARENTING= "1";
+    # Fix issue where kitty doesn't play nice with ssh
+    TERM= "xterm-256color";
+    EDITOR= "nvim";
   };
 
   # Let Home Manager install and manage itself.
