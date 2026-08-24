@@ -1,5 +1,5 @@
 # General
-default-timeout=1000
+default-timeout=2000
 width=350
 height=200
 padding=12

@@ -1,65 +1,172 @@
+/* colors: https://github.com/YedTheEmo/gore.nvim */
+@define-color void       #070608;
+@define-color black      #0D0A0D;
+@define-color stone      #151114;
+@define-color ash        #21191D;
+@define-color bone       #E8DED0;
+@define-color parchment  #C9BBAA;
+@define-color ash_text   #817873;
+@define-color dead_text  #514B49;
+@define-color wine       #4D0D17;
+@define-color blood      #8F1828;
+@define-color crimson    #B92338;
+@define-color scarlet    #D63B4F;
+@define-color tarnished  #9A8034;
+@define-color gold       #C0A34A;
+@define-color iron       #707276;
+@define-color steel      #9A9B9D;
+@define-color lichen     #687052;
+
+@define-color aqua	 #00B3A7;
+
+/* my colors */
+@define-color bg	 @void;
+@define-color warning	 @gold;
+@define-color critical	 @wine;
+@define-color focused	 #883500;  /* orange */
+@define-color network	 #0BDB00;  /* green  */
+@define-color sound      @crimson; 
+@define-color battery	 @aqua;
+@define-color temp	 #9E2EFF;  /* purple */
+
+/*
 @define-color accent #afa193;
 @define-color fg #f6f1ea;
 @define-color bg #101010;
 @define-color bg-alt #252525;
+*/
+/* keyframes */
 
-* {
-    font-family: "Fira Code";
-    font-size: 14px;
-    min-height: 0;
+@keyframes blink-critical {
+    to {
+	background-color: @critical;
+    }
 }
 
-window#waybar {
+@keyframes rainbow-color {
+    0%   { color: #ff0000;}
+    16%  { color: #ffff00;}
+    33%  { color: #00ff00;}
+    50%  { color: #00ffff;}
+    66%  { color: #0000ff;}
+    83%  { color: #ff00ff;}
+    100% { color: #ff0000;}
+}
+
+@keyframes rainbow-color2 {
+    0%   { color: #ff0000; border-color:#ff0000; }
+    20%  { color: #ffff00; border-color:#ffff00; }
+    40%  { color: #00ff00; border-color:#00ff00; }
+    60%  { color: #00ffff; border-color:#00ffff; }
+    80%  { color: #ff00ff; border-color:#ff00ff; }
+    100% { color: #ff0000; border-color:#ff0000; }
+}
+
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+#waybar {
+    border-top: 1px solid @lichen;
+    /*border-bottom: 1px solid @lichen;*/
     background-color: @bg;
-    border-bottom: 1px solid @bg-alt;
+    /* rainbow */
+    /*animation: rainbow-color2 10s linear infinite;*/
+    color: @liche;
+    font-family: "Fira Code";
+    font-size: 14px;
+}
+
+#battery,
+#pulseaudio,
+#temperature,
+#battery,
+#network {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+/* Things to note */
+
+#mode,
+#temperature.critical,
+#battery.critical.discharging {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-name: blink-critical;
+    animation-duration: 1s;
+}
+
+#network.disconnected,
+#temperature.warning,
+#mode,
+#battery.warning.discharging {
+    color: @warning;
+    border-top: 1px solid @warning;
 }
 
 #mode {
     font-weight: bold;
-    color: #883500;
-}
-
-#language,
-#pulseaudio,
-#battery,
-#backlight,
-#temperature,
-#custom-clock {
-    color: @fg;
-}
-
-#mpd {
-    font-weight: bold;
-    padding-left: 30px;
-    border-bottom: 1px solid @bg-alt;
-}
-
-#temperature.critical {
-    color: #820000;
-}
-
-#workspaces {
-    border-bottom: 1px solid @bg-alt;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 #workspaces button {
-    padding: 5px 5px 5px 5px;
-    color: @fg;
-    background-color: @bg;
     font-weight: bold;
-    border: none;
-}
-
-#workspaces button:hover {
-    background: none;
-    border: none;
-    border-color: transparent;
-    transition: none;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 #workspaces button.focused {
-    border: none;
-    color: #883500;
+    color: @focused;
+    border-top: 1px solid @focused;
+}
+
+#workspaces button:hover { 
+    background: none;
+    transition: none;
+}
+
+#custom-padding {
+    padding-left: 30pt;
+}
+
+#mpd.playing {
+    border-top: 1px solid;
+    animation: rainbow-color2 10s linear infinite;
+}
+
+#mpd.paused {
+    font-style: italic;
+    color: @tarnished;
+    border-top: 1px solid @tarnished;
+}
+
+#network {
+    color: @network;
+    border-top: 1px solid @network;
+}
+
+#pulseaudio {
+    color: @sound;
+    border-top: 1px solid @sound;
+}
+
+#temperature {
+    color: @temp;
+    border-top: 1px solid @temp;
+}
+
+#battery {
+    color: @battery;
+    border-top: 1px solid @battery;
 }
 
 #tray {

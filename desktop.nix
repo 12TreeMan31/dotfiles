@@ -12,11 +12,11 @@ in {
     focused = mkOption {
       type = types.attrsOf types.str;
       default = {
-	  background = "#285577";
-      border = "#4c7899";
-  	  childBorder = "#285577";
-  	  indicator = "#2e9ef4";
-  	  text = "#ffffff";
+	    background = "#285577";
+        border = "#4c7899";
+  	    childBorder = "#285577";
+  	    indicator = "#2e9ef4";
+  	    text = "#ffffff";
       };
       description = "Sway theme colors";
     };
@@ -42,6 +42,7 @@ in {
     slurp		    # screenshot
     wl-clipboard	# screenshot
     imv			    # image viewer
+    mpv
     mako		    # notifications
     kitty		    # term
     tofi		    # dmenu
@@ -72,6 +73,9 @@ in {
 	    titlebar = false;
       };
       colors.focused = config.desktop.focused;
+      startup = [
+        { command = "mako"; }
+      ];
       keybindings = let
         mod = config.wayland.windowManager.sway.config.modifier;
       in lib.mkOptionDefault {
@@ -108,9 +112,9 @@ in {
 
     config.sway = {
       default = [ "gtk" ];
-      "org.freedesktop.impl.portal.FileChooser" = [
-        "termfilechooser"
-      ];
+      #"org.freedesktop.impl.portal.FileChooser" = [
+      #  "termfilechooser"
+      #];
     };
   };
 
@@ -130,6 +134,10 @@ in {
       "image/gif" = [ "imv.desktop" ];
       "image/webp" = [ "imv.desktop" ];
       "image/bmp" = [ "imv.desktop" ];
+
+      "video/mp4" = [ "mpv.desktop" ];
+      "video/webm" = [ "mpv.desktop" ];
+      "video/mkv" = [ "mpv.desktop" ];
 
       "text/plain" = [ "nvim.desktop" ];
     };
@@ -166,11 +174,6 @@ in {
     enable = true;
     longitude = -81.0;
     latitude = 41.0;
-  };
-
-  services.mpd = {
-    enable = true;
-    network.startWhenNeeded = true;
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
