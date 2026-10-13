@@ -17,24 +17,37 @@
 @define-color steel      #9A9B9D;
 @define-color lichen     #687052;
 
-@define-color aqua	 #00B3A7;
+/* colors: gruvbox */
+@define-color black	#282828;
+@define-color red	#cc241d;
+@define-color green	#98971a;
+@define-color yellow	#d79921;
+@define-color blue	#458588;
+@define-color purple	#b16286;
+@define-color aqua	#689d6a;
+@define-color gray	#a89984;
+@define-color brgray	#928374;
+@define-color brred	#fb4934;
+@define-color brgreen	#b8bb26;
+@define-color bryellow	#fabd2f;
+@define-color brblue	#83a598;
+@define-color brpurple	#d3869b;
+@define-color braqua	#8ec07c;
+@define-color white	#ebdbb2;
+
+
+@define-color aqua2	 #00B3A7;
 
 /* my colors */
 @define-color bg	 @void;
 @define-color warning	 @gold;
 @define-color critical	 @wine;
 @define-color focused	 #883500;  /* orange */
-@define-color network	 #0BDB00;  /* green  */
-@define-color sound      @crimson; 
-@define-color battery	 @aqua;
-@define-color temp	 #9E2EFF;  /* purple */
+@define-color network	 #009823;  /* green  */
+@define-color sound      @red; 
+@define-color battery	 @aqua2;
+@define-color temp	 @purple;  /* purple */
 
-/*
-@define-color accent #afa193;
-@define-color fg #f6f1ea;
-@define-color bg #101010;
-@define-color bg-alt #252525;
-*/
 /* keyframes */
 
 @keyframes blink-critical {
@@ -78,7 +91,6 @@
     background-color: @bg;
     /* rainbow */
     /*animation: rainbow-color2 10s linear infinite;*/
-    color: @liche;
     font-family: "Fira Code";
     font-size: 14px;
 }
@@ -88,8 +100,8 @@
 #temperature,
 #battery,
 #network {
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 /* Things to note */
@@ -134,8 +146,11 @@
     transition: none;
 }
 
+#custom-padding2 {
+    padding-left: 10px;
+}
 #custom-padding {
-    padding-left: 30pt;
+    padding-left: 30px;
 }
 
 #mpd.playing {

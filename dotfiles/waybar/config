@@ -7,7 +7,7 @@
     "modules-left": [
         "sway/mode",
         "sway/workspaces",
-	"custom/padding",
+	    "custom/padding",
         "mpd"
     ],
     "modules-center": [
@@ -15,8 +15,9 @@
     ],
     "modules-right": [
         "tray",
-	"network",
-	"pulseaudio",
+        "custom/padding2",
+	    "network",
+	    "pulseaudio",
         "temperature",
         "battery"
     ],
@@ -29,27 +30,31 @@
         "format": "{}"
     },
     "custom/padding": {
-	"format": " "
+	    "format": " "
+    },
+    "custom/padding2": {
+	    "format": " "
     },
     "mpd": {
-	"format": "{artist} - {title}",
-    "format-stopped": "",
-	"tooltip": false,
-	"on-click": "mpc toggle"
+	    "format": "{artist} - {title}",
+        "artist-len": 10,
+	    "tooltip": false,
+        "on-click": "mpc toggle"
     },
 
     "clock": {
         "format": "{:%A %I:%M%p %b %d}",
         "interval": 5,
-        "tooltip-format": "<span>{calendar}</span>",
-	"calendar": {
+        "tooltip-format": "<tt>{calendar}</tt>",
+	    "calendar": {
             "mode": "year",
-	    "mode-mon-col": 3,
-            "weeks-pos": "right",
+            "mode-mon-col": 3,
             "format": {
-        	"months": "<span color='#f5c2e7'><b>{}</b></span>",
-        	"weekdays": "<span color='#89b4fa'><b>{}</b></span>",
-        	"today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><i>{}</i></b></span>" 
             }
     	}
     },
@@ -63,28 +68,28 @@
         "format-ethernet": "{ipaddr}/{cidr}",
         "format-wifi": "{essid} {icon}",
         "format-disconnected": "No connection",
-	"format-icons": [
-	    "󰤟",
-	    "󰤢",
-	    "󰤥",
-	    "󰤨"
-	],
+	    "format-icons": [
+	        "󰤟",
+	        "󰤢",
+	        "󰤥",
+	        "󰤨"
+	    ],
         "tooltip": false,
         "interval": 5
     },
     "pulseaudio": {
-	"format": "{volume}% {icon}",
-	"format-muted": "{volume}% 󰝟",
-	"format-icons": {
-	    "headphone": "",
-	    "headset": "",
-	    "phone": "",
-	    "portable": "",
-	    "car": "",
-	    "default": ["", ""]
+	    "format": "{volume}% {icon}",
+	    "format-muted": "{volume}% 󰝟",
+	    "format-icons": {
+	        "headphone": "",
+	        "headset": "",
+	        "phone": "",
+	        "portable": "",
+	        "car": "",
+	        "default": ["", ""] 
         },
-	"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-	"tooltip": false
+	    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+	    "tooltip": false
     },
     "temperature": {
         "critical-threshold": 80,
@@ -93,12 +98,12 @@
         "tooltip": false
     },
     "battery": {
-	"interval": 20,
-	"states": {
-	    "warning": 30,
-	    "critical": 20
-	},
-	"events": {
+	    "interval": 20,
+	    "states": {
+	        "warning": 30,
+	        "critical": 20
+	    },
+	    "events": {
             "on-discharging-warning": "notify-send -u normal 'Low Battery'",
             "on-discharging-critical": "notify-send -u critical 'Very Low Battery'"
         },
