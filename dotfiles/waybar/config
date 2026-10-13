@@ -5,9 +5,9 @@
     "spacing": 0,
 
     "modules-left": [
-        "sway/mode",
+	"sway/mode",
         "sway/workspaces",
-	    "custom/padding",
+	"custom/padding",
         "mpd"
     ],
     "modules-center": [
@@ -16,12 +16,16 @@
     "modules-right": [
         "tray",
         "custom/padding2",
-	    "network",
-	    "pulseaudio",
+	"network",
+	"pulseaudio",
         "temperature",
         "battery"
     ],
 
+    "custom/host": {
+	"format": " treeman@{text}",
+	"exec": "cat /etc/hostname"
+    },
     "sway/workspaces": {
         "disable-scroll": true,
         "format": "{name}"
@@ -30,15 +34,18 @@
         "format": "{}"
     },
     "custom/padding": {
-	    "format": " "
+	    "format": " ",
+	    "tooltip": false
     },
     "custom/padding2": {
-	    "format": " "
+	    "format": " ",
+	    "tooltip": false
     },
     "mpd": {
-	    "format": "{artist} - {title}",
+	"format": "{artist} - {title}",
+	"format-stopped": "",
         "artist-len": 10,
-	    "tooltip": false,
+	"tooltip": false,
         "on-click": "mpc toggle"
     },
 
