@@ -69,7 +69,6 @@ in {
     enable = true;
     wrapperFeatures.gtk = true;
     systemd.enable = true;
-    extraConfig = "swaybg_command -";
     config = {
       modifier = config.desktop.modkey;
       defaultWorkspace = "workspace number 1";
@@ -92,17 +91,18 @@ in {
         "${mod}+SHIFT+p" = "exec slurp | grim -g - - | tee ~/Pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
         "${mod}+Shift+n" = "exec awww img $(sid-bg)";
         "${mod}+Shift+e" = "exec swaynag -t warning -y overlay -m 'Do you want to exit sway?' -b 'Yes' 'swaymsg exit'";
-        "${mod}+Shift+q" = "exec kitty --single-instance impala";
-        "${mod}+Shift+m" = "exec kitty --single-instance bluetui";
-        "${mod}+Shift+w" = "exec kitty --single-instance wiremix";
-        "${mod}+Shift+s" = "exec kitty --single-instance rmpc";
+        "${mod}+Shift+q" = "exec kitty --single-instance --class yazi-xdg impala";
+        "${mod}+Shift+m" = "exec kitty --single-instance --class yazi-xdg bluetui";
+        "${mod}+Shift+w" = "exec kitty --single-instance --class yazi-xdg wiremix";
+        "${mod}+Shift+s" = "exec kitty --single-instance --class yazi-xdg rmpc";
       };
-      input = {
-	"*" = {
-	  scroll_method = "two_finger";
-	};
+      input = { "*" = { scroll_method = "two_finger"; };
       };
     };
+    extraConfig = "
+        swaybg_command -
+        for_window [app_id=\"yazi-xdg\"] floating enable, resize set 1200 600
+    ";
   };
 
   xdg.userDirs = {
