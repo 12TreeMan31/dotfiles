@@ -1,7 +1,7 @@
 [filechooser]
-cmd=ranger-wrapper.sh
+cmd=/home/treeman/.config/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
 default_dir=$HOME
-env=TERMCMD='kitty --class ranger-xdg'
+env=TERMCMD='kitty --class yazi-xdg'
 
 open_mode=suggested
 save_mode=suggested

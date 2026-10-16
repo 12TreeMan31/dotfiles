@@ -9,6 +9,10 @@
     "Music/music-sync.sh".source = scripts/music-sync.sh;
   };
 
+  dotfiles.confDirs = [
+    "rmpc"
+  ];
+
   services.mpd = {
     enable = true;
 

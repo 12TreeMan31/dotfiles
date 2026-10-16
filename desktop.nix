@@ -42,14 +42,22 @@ in {
     slurp		    # screenshot
     wl-clipboard	# screenshot
     imv			    # image viewer
-    mpv
+    mpv             # video player
     mako		    # notifications
     kitty		    # term
     tofi		    # dmenu
     waybar		    # bar
-    ranger		    # filepicker
+    yazi		    # filepicker
     awww		    # desktop background
     mupdf           # pdf viewer
+    bluetui
+    impala
+    wiremix
+  ];
+
+  systemd.user.packages = [
+    # For some reason a nomral install will not give us access to the service
+    pkgs.xdg-desktop-portal-termfilechooser
   ];
 
   gtk = {
@@ -84,7 +92,10 @@ in {
         "${mod}+SHIFT+p" = "exec slurp | grim -g - - | tee ~/Pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
         "${mod}+Shift+n" = "exec awww img $(sid-bg)";
         "${mod}+Shift+e" = "exec swaynag -t warning -y overlay -m 'Do you want to exit sway?' -b 'Yes' 'swaymsg exit'";
-        "${mod}+Shift+q" = "exec kitty --single-instance iwctl";
+        "${mod}+Shift+q" = "exec kitty --single-instance impala";
+        "${mod}+Shift+m" = "exec kitty --single-instance bluetui";
+        "${mod}+Shift+w" = "exec kitty --single-instance wiremix";
+        "${mod}+Shift+s" = "exec kitty --single-instance rmpc";
       };
       input = {
 	"*" = {
@@ -104,17 +115,16 @@ in {
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ 
-      xdg-desktop-portal
       xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
       xdg-desktop-portal-termfilechooser
     ];
 
-    config.sway = {
+    config.common = {
       default = [ "gtk" ];
-      #"org.freedesktop.impl.portal.FileChooser" = [
-      #  "termfilechooser"
-      #];
+      "org.freedesktop.impl.portal.FileChooser" = [
+        "termfilechooser"
+      ];
     };
   };
 
@@ -181,15 +191,17 @@ in {
     "waybar"
     "mako"
     "xdg-desktop-portal-termfilechooser"
+    "nvim"
   ];
 	
   home.sessionVariables = {
-    TERMCMD = "${pkgs.kitty}/bin/kitty";
     # Fix font rendering for java programs
     _JAVA_AWT_WM_NONREPARENTING= "1";
     # Fix issue where kitty doesn't play nice with ssh
     TERM= "xterm-256color";
     EDITOR= "nvim";
+    # We need this in order to get yazi to work at the filepicker
+    PATH = "/home/treeman/.nix-profile/bin:/usr/local/bin:/usr/bin";
   };
 
   # Let Home Manager install and manage itself.
